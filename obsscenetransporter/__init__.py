@@ -155,6 +155,7 @@ class ObsStudioSceneCollection:
 
     def _parse(self) -> None:
         self.loaded = True
+        self.name = self.scenes["name"]
         self.counts = {
             "scene": 0
         }
