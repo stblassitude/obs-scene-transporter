@@ -4,7 +4,8 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="obs-scene-transporter", # Replace with your own username
+    name="obs-scene-transporter",
+    version="0.9.1",
     author="Stefan Bethke",
     author_email="stb@lassitu.de",
     description="Import and export OBS Studio scenes including all assets",
@@ -25,10 +26,4 @@ setuptools.setup(
     package_dir={"": "."},
     packages=setuptools.find_packages(where="."),
     python_requires=">=3.6",
-    setup_requires=['setuptools-git-ver'],
-    version_config={
-        "template": "{tag}",
-        "dev_template": "{tag}.dev{ccount}+git.{sha}",
-        "dirty_template": "{tag}.dev{ccount}+git.{sha}.dirty"
-    },
 )
