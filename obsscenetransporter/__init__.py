@@ -298,7 +298,7 @@ def main(argv: list = None) -> int:
             parser.error("Need exactly name and ZIP file name")
             return os.EX_USAGE
         oss = ObsStudioSceneCollection(name=args.params[0])
-        if len(args.params) > 2:
+        if len(args.params) > 1:
             oss.export_scenes(args.params[1])
         else:
             oss.export_scenes()
