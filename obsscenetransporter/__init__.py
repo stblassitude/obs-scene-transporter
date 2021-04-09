@@ -242,7 +242,9 @@ def list_scenes(path=None) -> list:
     return r
 
 
-def main(argv: list) -> int:
+def main(argv: list = None) -> int:
+    if not argv:
+        argv = sys.argv[1:]
     parser = argparse.ArgumentParser(formatter_class=argparse.RawDescriptionHelpFormatter,
                                      prog="obs-scene-transporter",
                                      description=textwrap.dedent("""\
