@@ -25,7 +25,7 @@ $ obs-scene-transporter -h
 
 Alternatively, you can run the module:
 ```shell
-$ python -m obs-scene-transporter -h
+$ python -m obsscenetransporter -h
 ```
 
 ## Exporting a scene collection

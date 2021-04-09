@@ -43,7 +43,7 @@ def _get_scenes_path() -> str:
         p = os.path.expanduser("~/Library/Application Support")
     else:
         p = os.path.expanduser("~/.config")
-    return os.path.join(p, "obs-studio/basic/scenes")
+    return os.path.join(p, "obs-studio", "basic", "scenes")
 
 
 def _get_assets_path() -> str:
@@ -216,7 +216,7 @@ class ObsStudioSceneCollection:
             self.scenes["name"] = name
             if not asset_dir:
                 asset_dir = _get_assets_path()
-                asset_dir = os.path.join(asset_dir, f"OBS/Scene-Assets/{self.name}")
+                asset_dir = os.path.join(asset_dir, "OBS", "Scene-Assets", self.name)
             self._fix_source_ids(platform.system())
             self._update_asset_paths(asset_dir)
             scenes = os.path.join(_get_scenes_path(), f"{self.name}.json")
