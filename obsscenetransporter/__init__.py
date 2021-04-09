@@ -13,7 +13,7 @@ import textwrap
 
 from pathlib import Path
 from typing import Callable
-from zipfile import ZipInfo, ZipFile
+from zipfile import ZipFile
 
 # Maps the source ids as used in Linux to macOS or Windows
 source_id_mappings = {
@@ -213,7 +213,7 @@ class ObsStudioSceneCollection:
             self._parse()
             if name:
                 self.name = name
-            self.scenes["name"] = name
+            self.scenes["name"] = self.name
             if not asset_dir:
                 asset_dir = _get_assets_path()
                 asset_dir = os.path.join(asset_dir, "OBS", "Scene-Assets", self.name)
