@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="obs-scene-transporter",
-    version="0.9.2",
+    version="0.9.4",
     author="Stefan Bethke",
     author_email="stb@lassitu.de",
     description="Import and export OBS Studio scenes including all assets",
