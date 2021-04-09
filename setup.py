@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="obs-scene-transporter",
-    version="0.9.1",
+    version="0.9.2",
     author="Stefan Bethke",
     author_email="stb@lassitu.de",
     description="Import and export OBS Studio scenes including all assets",
@@ -21,7 +21,7 @@ setuptools.setup(
         "Operating System :: OS Independent",
     ],
     entry_points={
-        'console_scripts': ['obs-scene-transporter=obscenetransporter:main']
+        'console_scripts': ['obs-scene-transporter=obsscenetransporter:main']
     },
     package_dir={"": "."},
     packages=setuptools.find_packages(where="."),
