@@ -1,11 +1,21 @@
+import os
 import setuptools
+import subprocess
 
 with open("README.md", "r") as fh:
     long_description = fh.read()
 
+version = None
+try:
+    version = subprocess.check_output(["git", "describe", "--tags", "--abbrev=0"]).decode("UTF-8").strip()
+except Exception as e:
+    version = "0.9.0"
+if "GITHUB_REF" in os.environ and os.environ["GITHUB_REF"].startswith("refs/tags/"):
+    version = os.environ["GITHUB_REF"][len("refs/tags/"):]
+
 setuptools.setup(
     name="obs-scene-transporter",
-    version="0.9.4",
+    version=version,
     author="Stefan Bethke",
     author_email="stb@lassitu.de",
     description="Import and export OBS Studio scenes including all assets",
