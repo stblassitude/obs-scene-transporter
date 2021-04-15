@@ -59,3 +59,9 @@ $ obs-scene-transporter -n fall-conference summer-conference.zip
 ## Documentation
 
 The main class of the package has limited documentation in the source code, see [`obsscenetransporter/__init__.py`](obsscenetransporter/__init__.py).
+
+## Running tests
+
+```shell
+python -m unittest discover -s obsscenetransporter/tests
+```

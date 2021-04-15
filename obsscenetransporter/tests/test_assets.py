@@ -1,16 +1,16 @@
 import unittest
 
-from pathlib import Path, PosixPath
-from unittest.mock import MagicMock, patch
+from pathlib import Path
+from unittest.mock import patch
 
 from obsscenetransporter import ObsStudioSceneCollection
-from obsscenetransporter.pathformatter import PathFormatter, ZipPathFormatter
+from obsscenetransporter.pathformatter import PathFormatter
 
 
 class TestAssets(unittest.TestCase):
 
     def setUp(self) -> None:
-        self.dut = ObsStudioSceneCollection.from_path("fixtures/TransportTest-mac.json")
+        self.dut = ObsStudioSceneCollection.from_path("obsscenetransporter/tests/fixtures/TransportTest-mac.json")
 
     def test_name(self):
         self.assertEqual("TransportTest", self.dut.name)
@@ -23,7 +23,7 @@ class TestAssets(unittest.TestCase):
         self.dut._process_assets_in_transitions(self.dut.scenes, p)
 
         self.assertEqual(1, len(r))
-        self.assertEqual("/Users/stb/Downloads/OBS-TransportTest/Rotating_earth.mp4", r[0])
+        self.assertEqual("/Users/dev/Downloads/OBS-TransportTest/Rotating_earth.mp4", r[0])
 
     def test_process_assets_in_sources(self):
         def p(o: dict, k: str) -> None:
@@ -34,9 +34,9 @@ class TestAssets(unittest.TestCase):
         r = sorted(set(r))
 
         self.assertEqual(4, len(r))
-        self.assertEqual("/Users/stb/Documents/DevDay/Screens/broadcast_test_pattern_1920X1080.jpg", r[0])
-        self.assertEqual("/Users/stb/Downloads/OBS-TransportTest", r[1])
-        self.assertEqual("/Users/stb/Downloads/OBS-TransportTest/Rotating_earth.mp4", r[2])
+        self.assertEqual("/Users/dev/Documents/DevDay/Screens/broadcast_test_pattern_1920X1080.jpg", r[0])
+        self.assertEqual("/Users/dev/Downloads/OBS-TransportTest", r[1])
+        self.assertEqual("/Users/dev/Downloads/OBS-TransportTest/Rotating_earth.mp4", r[2])
 
     def test_dict_path(self):
         def u(d: dict, k: str) -> None:

@@ -27,6 +27,8 @@ jobs:
         pip install
         build wheel
         --user
+    - name: run unit tests
+      run: python -m unittest discover -s obsscenetransporter/tests
     - name: Build release module
       if: startsWith(github.ref, 'refs/tags')
       run: python setup.py egg_info sdist bdist_wheel
