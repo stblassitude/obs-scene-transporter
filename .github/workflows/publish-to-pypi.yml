@@ -12,6 +12,11 @@ jobs:
     - name: Get closest tag
       id: previoustag
       uses: "WyriHaximus/github-action-get-previous-tag@v1"
+    - name: Get next minor version
+      id: semvers
+      uses: "WyriHaximus/github-action-next-semvers@v1"
+      with:
+        version: ${{ steps.previoustag.outputs.tag }}
     - name: Set up Python 3.7
       uses: actions/setup-python@v1
       with:
@@ -32,7 +37,7 @@ jobs:
         password: ${{ secrets.PYPI_API_TOKEN }}
     - name: Build snapshot
       if: github.ref == 'refs/heads/main'
-      run: SETUPTOOLS_SCM_PRETEND_VERSION="${{steps.previoustag.outputs.tag}}.${GITHUB_RUN_NUMBER}" python setup.py sdist bdist_wheel
+      run: SETUPTOOLS_SCM_PRETEND_VERSION="${{steps.semvers.outputs.patch}}.${GITHUB_RUN_NUMBER}" python setup.py sdist bdist_wheel
     - name: Publish to Test PyPI
       if: github.ref == 'refs/heads/main'
       uses: pypa/gh-action-pypi-publish@master
