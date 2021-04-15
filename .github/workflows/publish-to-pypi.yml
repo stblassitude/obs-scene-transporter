@@ -16,11 +16,11 @@ jobs:
       uses: actions/setup-python@v1
       with:
         python-version: 3.7
-    - name: Install pypa/build
+    - name: Install requirements
       run: >-
         python -m
         pip install
-        build
+        build wheel
         --user
     - name: Build release module
       if: startsWith(github.ref, 'refs/tags')
