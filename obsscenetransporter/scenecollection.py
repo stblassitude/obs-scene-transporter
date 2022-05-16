@@ -30,6 +30,8 @@ class ObsStudioSceneCollection:
             "xshm_input": "display_capture",
         },
         "Windows": {
+            "text_ft2_source": "text_gdiplus",
+            "text_ft2_source": "text_gdiplus_v2",
             "v4l2_input": "dshow_input",
             "xshm_input": "monitor_capture",
         },
