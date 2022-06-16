@@ -166,7 +166,9 @@ class ObsStudioSceneCollection:
         :return:
         """
         for scene in scenes["sources"]:
-            if scene["versioned_id"] in ("ffmpeg_source",):
+            if scene["versioned_id"] in ("ffmpeg_source",) or \
+                (scene["versioned_id"] in ("browser_source",) and
+                scene["settings"]["is_local_file"]):
                 ObsStudioSceneCollection._dict_path(scene, "settings.local_file", update)
             if scene["versioned_id"] in ("image_source",):
                 ObsStudioSceneCollection._dict_path(scene, "settings.file", update)
@@ -201,6 +203,7 @@ class ObsStudioSceneCollection:
 
         self._process_assets_in_sources(scene, add)
         self._process_assets_in_transitions(scene, add)
+        print(sorted(set(r))) # ^debug
 
         return sorted(set(r))
 
@@ -229,6 +232,7 @@ class ObsStudioSceneCollection:
         :param system: the OS to update the definition to
         :return:
         """
+        print(source[prop])
         if system == "Linux":
             for (os, map) in self.source_id_mappings.items():
                 for (k, v) in map.items():
@@ -243,7 +247,7 @@ class ObsStudioSceneCollection:
 
     def _fix_source_ids(self, system="Linux") -> None:
         """
-        Adjust the id property of each source to use the camera or display grabber ID appropriate for the target OS.
+        Adjust the id property of each source to use the camera, display, or text grabber ID appropriate for the target OS.
         :param system: "Linux", "Darwin", or "Windows"
         :return:
         """
