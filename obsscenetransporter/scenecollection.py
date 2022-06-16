@@ -203,7 +203,6 @@ class ObsStudioSceneCollection:
 
         self._process_assets_in_sources(scene, add)
         self._process_assets_in_transitions(scene, add)
-        print(sorted(set(r))) # ^debug
 
         return sorted(set(r))
 
@@ -232,7 +231,6 @@ class ObsStudioSceneCollection:
         :param system: the OS to update the definition to
         :return:
         """
-        print(source[prop])
         if system == "Linux":
             for (os, map) in self.source_id_mappings.items():
                 for (k, v) in map.items():
