@@ -41,19 +41,19 @@ castle-wolfenstein-speedrun
 
 Then use the `export` command to create a ZIP archive of the scene collection and all assets:
 ```shell
-$ obs-scene-transporter summer-conference summer-conference.zip
+$ obs-scene-transporter export summer-conference summer-conference.zip
 ```
 
 ## Importing a scene
 
 Run the `ìmport` command to import a ZIP archive into OBS:
 ```shell
-$ obs-scene-transporter summer-conference.zip
+$ obs-scene-transporter import summer-conference.zip
 ```
 
 If you'd like to import the collection under a different name, use the `-n` option:
 ```shell
-$ obs-scene-transporter -n fall-conference summer-conference.zip
+$ obs-scene-transporter -n fall-conference import summer-conference.zip
 ```
 
 ## Documentation
