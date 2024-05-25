@@ -157,6 +157,18 @@ class ObsStudioSceneCollection:
             ObsStudioSceneCollection._dict_path(o[path[0]], path[1:], callback)
 
     @staticmethod
+    def _process_assets_in_scripts(scenes: dict, update: Callable[[dict, str], None]) -> None:
+        """
+        Iterate over all sources and run the callback on each file reference contained.
+
+        :param scene: Scene collection dict as read from the JSON
+        :param update: callback to call for each element that contains a filename
+        :return:
+        """
+        for scene in scenes["modules"]["scripts-tool"]:
+            ObsStudioSceneCollection._dict_path(scene, "path", update)
+
+    @staticmethod
     def _process_assets_in_sources(scenes: dict, update: Callable[[dict, str], None]) -> None:
         """
         Iterate over all sources and run the callback on each file reference contained.
@@ -203,6 +215,7 @@ class ObsStudioSceneCollection:
 
         self._process_assets_in_sources(scene, add)
         self._process_assets_in_transitions(scene, add)
+        self._process_assets_in_scripts(scene, add)
 
         return sorted(set(r))
 
@@ -221,6 +234,7 @@ class ObsStudioSceneCollection:
 
         self._process_assets_in_sources(scene, update_path)
         self._process_assets_in_transitions(scene, update_path)
+        self._process_assets_in_scripts(scene, update_path)
 
     def _map_source_id(self, source: dict, prop, system) -> None:
         """
