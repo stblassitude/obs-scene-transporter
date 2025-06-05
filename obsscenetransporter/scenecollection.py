@@ -180,7 +180,7 @@ class ObsStudioSceneCollection:
         for scene in scenes["sources"]:
             if scene["versioned_id"] in ("ffmpeg_source",) or \
                 (scene["versioned_id"] in ("browser_source",) and
-                scene["settings"]["is_local_file"]):
+                ("is_local_file" in scene["settings"])):
                 ObsStudioSceneCollection._dict_path(scene, "settings.local_file", update)
             if scene["versioned_id"] in ("image_source",):
                 ObsStudioSceneCollection._dict_path(scene, "settings.file", update)
