@@ -62,7 +62,7 @@ class ObsStudioSceneCollection:
         """
         if not os.path.isfile(path):
             path = os.path.join(PathHelper.get_scenes_path(), path + ".json")
-        with open(path, "r") as f:
+        with open(path, "r", encoding='utf-8') as f:
             ossc = ObsStudioSceneCollection(f, path)
         ossc._parse(PathFormatter().format_expanding_dirs)
         return ossc
@@ -103,7 +103,7 @@ class ObsStudioSceneCollection:
             ossc._fix_source_ids(platform.system())
             ossc._update_assets(ossc.scenes, asset_dir, zpf.format_file_name)
             scenes = os.path.join(PathHelper.get_scenes_path(), f"{ossc.name}.json")
-            with open(scenes, "w") as fp:
+            with open(scenes, "w", encoding='utf-8') as fp:
                 json.dump(ossc.scenes, fp)
             os.makedirs(asset_dir, exist_ok=True)
             for a in filter(lambda p: p.startswith(ossc.asset_path_in_archive), zip.namelist()):
@@ -180,7 +180,7 @@ class ObsStudioSceneCollection:
         for scene in scenes["sources"]:
             if scene["versioned_id"] in ("ffmpeg_source",) or \
                 (scene["versioned_id"] in ("browser_source",) and
-                scene["settings"]["is_local_file"]):
+                ("is_local_file" in scene["settings"])):
                 ObsStudioSceneCollection._dict_path(scene, "settings.local_file", update)
             if scene["versioned_id"] in ("image_source",):
                 ObsStudioSceneCollection._dict_path(scene, "settings.file", update)
